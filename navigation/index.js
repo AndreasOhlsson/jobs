@@ -6,12 +6,12 @@ import {
   Platform,
 } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import AuthScreen from './screens/AuthScreen'
-import WelcomeScreen from './screens/WelcomeScreen'
-import MapScreen from './screens/MapScreen'
-import DeckScreen from './screens/DeckScreen'
-import SettingsScreen from './screens/SettingsScreen'
-import ReviewScreen from './screens/ReviewScreen'
+import AuthScreen from '../screens/AuthScreen'
+import WelcomeScreen from '../screens/WelcomeScreen'
+import MapScreen from '../screens/MapScreen'
+import DeckScreen from '../screens/DeckScreen'
+import SettingsScreen from '../screens/SettingsScreen'
+import ReviewScreen from '../screens/ReviewScreen'
 
 export default Tabs = TabNavigator({
   welcome: { screen: WelcomeScreen },
@@ -33,4 +33,9 @@ export default Tabs = TabNavigator({
         })
       })
   },
-});
+}, {
+    navigationOptions: {
+      tabBarVisible: false
+    },
+    lazy: true
+  });
