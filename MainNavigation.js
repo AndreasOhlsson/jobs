@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Platform,
 } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import AuthScreen from './screens/AuthScreen'
@@ -12,7 +13,7 @@ import DeckScreen from './screens/DeckScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import ReviewScreen from './screens/ReviewScreen'
 
-export const Tabs = TabNavigator({
+export default Tabs = TabNavigator({
   welcome: { screen: WelcomeScreen },
   auth: { screen: AuthScreen },
   main: {
@@ -25,6 +26,11 @@ export const Tabs = TabNavigator({
           settings: { screen: SettingsScreen },
         })
       }
-    })
+    },
+      {
+        navigationOptions: ({ navigation }) => ({
+          marginTop: Platform.OS === 'android' ? 24 : 0
+        })
+      })
   },
 });
