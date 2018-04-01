@@ -30,7 +30,11 @@ export default Tabs = TabNavigator({
       {
         navigationOptions: ({ navigation }) => ({
           marginTop: Platform.OS === 'android' ? 24 : 0
-        })
+        }),
+        tabBarPosition: 'bottom',
+        tabBarOptions: {
+          labelStyle: { fontSize: 12 }
+        }
       })
   },
 }, {
