@@ -1,17 +1,35 @@
-import React, { Component } from 'react';
+import Expo, { Notifications } from 'expo'
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   Platform,
-} from 'react-native';
+  Alert,
+} from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Provider } from 'react-redux'
 
 import Tabs from './navigation'
 import store from './store'
+import registerForNotifications from './services/push_notifications'
 
 export default class App extends Component {
+  componentDidMount() {
+    registerForNotifications()
+    Notifications.addListener((notification) => {
+      const { data: { text }, origin } = notification
+
+      if (origin === 'received' && text) {
+        Alert.alert(
+          'New Push Notification',
+          text,
+          [{ text: 'Ok.' }]
+        )
+      }
+    })
+  }
+
   render() {
     return (
       <Provider store={store}>
